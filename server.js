@@ -14,33 +14,34 @@ const pool = mysql.createPool({
     host: '127.0.0.1',
     user: 'root',
     password: 'senac@02',
-    database: 'CacauRock'
+    database: 'cacau_rock'
 });
 
 app.post('/api/mysql', async (req, res) => {
     const { nome, login, senha, tipo } = req.body;
     try {
         switch (tipo) {
+            case 'login':
+                var [rows, fields] = await pool.query(
+                    "select * from `cacau_rock`.`tbl_login` where `login` = ? and `senha` = ?;",
+                    [ login, senha]
+                );
+                if (rows.length == 1) {
+                    res.json({ message: 'Usuário logado com sucesso' });
+                } else {
+                    throw ("Não foi possível logar o usuário!");
+                }
+                break;
+
             case 'cadastro':
                 var [rows, fields] = await pool.query(
-                    "insert into `CacauRock`.`tbl_login` (`nome`, `login`, `senha`) values (?, ?, ?);",
+                    "insert into `cacau_rock`.`tbl_cadastro` (`nome`, `login`, `senha`) values (?, ?, ?);",
                     [nome, login, senha]
                 );
                 if (rows.affectedRows > 0) {
                     res.json({ message: 'Usuário cadastrado com sucesso!' });
                 } else {
                     throw ('Não foi possível cadastrar o usuário!');
-                }
-                break;
-            case 'login':
-                var [rows, fields] = await pool.query(
-                    "select * from `CacauRock`.`tbl_login` where `nome` = ? and `login` = ? and `senha` = ?;",
-                    [nome, login, senha]
-                );
-                if (rows.length == 1) {
-                    res.json({ message: 'Usuário logado com sucesso' });
-                } else {
-                    throw ("Não foi possível logar o usuário!");
                 }
                 break;
             default:
