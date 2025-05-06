@@ -1,12 +1,12 @@
 document.getElementById('frmCadastro').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const nome = document.getElementById('txtNome').value.trim();
+    const nome = "";
     const login = document.getElementById('txtEmail').value.trim();
     const senha = document.getElementById('txtSenha').value.trim();
     const notificacao = document.getElementById('notificacao');
-    const tipo = 'cadastro';
+    const tipo = 'login';
 
-    if (!nome || !login || !senha ) {
+    if (!login || !senha ) {
         notificacao.innerText = "Todos os campos são obrigatórios.";
         return;
     }

@@ -6,14 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cadastro</title>
   <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"/>
   <link rel="shortcut icon" href="./logomarca.png" />
-  <link 
-    rel="stylesheet" 
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" 
-    integrity="sha512-GqSFFvqU2E8IfIk+jC3MdqydJSOux5HZGAnIXKIXldq77kQz4Eq6WIX3c2Af3pICo0eR3RzA8Xzd3u7yE/t6HA==" 
-    crossorigin="anonymous" 
-    referrerpolicy="no-referrer"
-  />
+
   <style>
     body {
       background: linear-gradient(135deg,  #471e0a, #b76a40, #d1a77c, #dad0c4);
@@ -43,7 +40,6 @@
       max-width: 500px;
       width: 90%;
     }
-
     label {
       color: #d1a77c;
     }
@@ -92,15 +88,9 @@
       text-align: center;
     }
     .logo {
+      /* max-width: 20px; */
       margin: 30px auto;
       display: block;
-    }
-    a {
-      color: #471e0a;
-    }
-
-    a:hover {
-      color: #b76a40;
     }
   </style>
 </head>
@@ -109,32 +99,31 @@
     
   <div class="container mt-5">
     <img src="cacarock1.png" alt="Logo CacauRock" class="logo" width="200" height="200"/>
-    <form id="frmLogin">
+    <form id="frmCadastro">
       <div class="mb-3">
         <label for="txtNome" class="form-label">Nome:</label>
-        <input type="text" class="form-control" id="txtNome" placeholder="Digite seu nome" />
+        <input type="text" class="form-control" id="txtNome" />
       </div>
       <div class="mb-3">
-        <label for="txtSenha" class="form-label">E-mail:</label>
-        <input type="password" class="form-control" id="txtSenha" placeholder="Digite seu e-mail"/>
+        <label for="txtEmail" class="form-label">E-mail:</label>
+        <input type="text" class="form-control" id="txtEmail" />
         </div>
       <div class="mb-3">
         <label for="txtSenha" class="form-label">Senha:</label>
-        <input type="password" class="form-control" id="txtSenha" placeholder="Digite sua senha" />
-      </div>
-      <div class="mb-3">
-        <label for="txtSenha" class="form-label">Confirmar Senha:</label>
-        <input type="password" class="form-control" id="txtSenha" placeholder="Confirme sua senha"/>
+        <input type="password" class="form-control" id="txtSenha" />
       </div>
       <button type="submit" class="btn btn-primary">
         <i class="fas fa-sign-in-alt"></i> CADASTRO
       </button>
     </form>
+    
+    <h6 id="notificacao"></h6>
   </div>
 
   <div class="text-center mt-4">
     <button class="btn btn-secondary d-flex align-items-center justify-content-center gap-2 mx-auto" onclick="history.back()">
-      <a href="./login.html"><i class="fas fa-arrow-left"></i> Voltar </a>
+      <a href="./index.html"></a>
+      <i class="fas fa-arrow-left"></i> Voltar
     </button>
   </div>
 
