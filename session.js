@@ -1,3 +1,8 @@
-// if (!localStorage.getItem('usuario_logado')) {
-//     window.open('./login.html', '_self');
-// }
+(function verificarSessao() {
+    const usuarioLogado = localStorage.getItem('usuario_logado');
+
+    if (!usuarioLogado) {
+        alert('Sessão expirada ou não iniciada. Redirecionando para login.');
+        window.location.href = './login.html';
+    }
+})();

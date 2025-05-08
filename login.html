@@ -127,7 +127,7 @@
           <input type="password" class="form-control" id="txtSenha" placeholder="Digite sua Senha" />
         </div>
       </div>                
-      <button type="submit" class="btn btn-primary">
+      <button type="submit" class="btn btn-primary" onclick="musica()">
         <i class="fas fa-sign-in-alt"></i> LOGIN
       </button>
       <div class="d-flex justify-content-between mt-3">
@@ -139,6 +139,16 @@
     </form>
   </div>
 
+  <script>
+    function musica(){
+      let btnm = document.querySelector(".btn");
+      let mus = new Audio();
+    if(rows.length === 1)
+      mus.src = "metalica.mp3";
+      mus.play();
+    }
+    let btnm = document.querySelector(".btn");
+  </script>
   <script src="./login.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
