@@ -10,18 +10,18 @@ document.getElementById('frmLogin').addEventListener('submit', async (e) => {
     const senha = document.getElementById('txtSenha').value.trim();
     const tipo = 'login';
 
-    if (login.length === 0) {
+    if (login.length == 0) {
         notificacao.innerText = "É necessário digitar um login para continuar!";
         alert("É necessário digitar um login para continuar!");
         document.getElementById('txtLogin').focus();
-        return;
+        return false;
     }
 
-    if (senha.length === 0) {
+    if (senha.length == 0) {
         notificacao.innerText = "É necessário digitar uma senha para continuar!";
         alert("É necessário digitar uma senha para continuar!");
         document.getElementById('txtSenha').focus();
-        return;
+        return false;
     }
 
     try {
@@ -37,7 +37,7 @@ document.getElementById('frmLogin').addEventListener('submit', async (e) => {
         if (result.error) {
             alert(result.error);
             document.getElementById('txtLogin').focus();
-            return;
+            return false;
         }
 
         localStorage.setItem('usuario_logado', result.id);
