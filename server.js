@@ -17,7 +17,7 @@ app.post('/api/mysql', async (req, res) => {
     let srvPassword = 'senac@02';
     let srvDatabase = 'cacau_rock';
 
-    if (domain !== 'localhost') {
+    if (domain != 'localhost') {
         srvHost = 'sql.freedb.tech';
         srvUser = 'freedb_freedb_cacau';
         srvPassword = '#f#5MYXcM79NpHu';
