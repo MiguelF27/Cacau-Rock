@@ -10,7 +10,9 @@ app.use(express.json());
 app.use(express.static('.'));
 
 app.post('/api/mysql', async (req, res) => {
-    const { nome = '', login = '', senha = '', tipo = '', id = '', domain = 'localhost' } = req.body;
+    const { nome, login, senha, tipo, id, domain } = req.body;
+
+    var strSql = "";
 
     let srvHost = '127.0.0.1';
     let srvUser = 'root';
@@ -33,43 +35,40 @@ app.post('/api/mysql', async (req, res) => {
 
     try {
         switch (tipo) {
-            case 'cadastro': {
-                const [existe] = await pool.query(
-                    `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = ?`, [login]);
+            case 'cadastro': 
+                strSql = `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}'`;
+                const [existe] = await pool.query(strSql);
 
                 if (existe.length > 0) {
                     return res.json({ message: 'Login já cadastrado!', error: 'Favor digitar outro login!' });
                 }
 
-                const [inserido] = await pool.query(
-                    `INSERT INTO \`${srvDatabase}\`.\`tbl_login\` (\`nome\`, \`login\`, \`senha\`) VALUES (?, ?, MD5(?))`,
-                    [nome, login, senha]
-                );
+                strSql = `INSERT INTO \`${srvDatabase}\`.\`tbl_login\` (\`nome\`, \`login\`, \`senha\`) VALUES ('${nome}', '${login}', MD5('${senha}'));`;
+                const [inserido] = await pool.query(strSql);
 
                 if (inserido.affectedRows > 0) {
                     return res.json({ message: 'Usuário cadastrado com sucesso!' });
                 } else {
                     throw new Error('Não foi possível cadastrar o usuário.');
                 }
-            }
-            case 'login': {
-                const [rows] = await pool.query(
-                    `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = ? AND \`senha\` = MD5(?)`,
-                    [login, senha]
-                );
+                break;
+            case 'login': 
+                strSql =  `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}' AND \`senha\` = MD5('${senha}')`;
+                const [rows] = await pool.query(strSql);
 
-                if (rows.length === 1) {
+                if (rows.length == 1) {
                     return res.json({ message: 'Usuário logado com sucesso! Redirecionando...', id: rows[0].id });
                 } else {
                     throw new Error('Login inválido ou senha incorreta.');
                 }
-            }
+                break;
             default:
                 throw new Error(`Tipo '${tipo}' não reconhecido.`);
+                break;
         }
     } catch (err) {
         res.status(500).json({
-            message: `Erro: ${err.message}`,
+            message: `Erro: ${err.message} - ${strSql}`,
             error: err.message
         });
     }
