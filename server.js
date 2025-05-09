@@ -36,7 +36,7 @@ app.post('/api/mysql', async (req, res) => {
     try {
         switch (tipo) {
             case 'cadastro': 
-                strSql = `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}'`;
+                strSql = `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}';`;
                 const [existe] = await pool.query(strSql);
 
                 if (existe.length > 0) {
@@ -53,7 +53,7 @@ app.post('/api/mysql', async (req, res) => {
                 }
                 break;
             case 'login': 
-                strSql =  `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}' AND \`senha\` = MD5('${senha}')`;
+                strSql =  `SELECT * FROM \`${srvDatabase}\`.\`tbl_login\` WHERE \`login\` = '${login}' AND \`senha\` = MD5('${senha}');`;
                 const [rows] = await pool.query(strSql);
 
                 if (rows.length == 1) {

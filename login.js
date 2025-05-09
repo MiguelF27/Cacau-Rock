@@ -31,11 +31,6 @@ document.getElementById('frmLogin').addEventListener('submit', async (e) => {
             body: JSON.stringify({ nome, login, senha, tipo, id, domain })
         });
 
-        if (!response.ok) {
-            const erroTexto = await response.text();
-            throw new Error(`Erro ${response.status}: ${erroTexto}`);
-        }
-
         const result = await response.json();
         notificacao.innerText = result.message || "Login efetuado.";
 
