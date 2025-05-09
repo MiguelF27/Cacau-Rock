@@ -18,10 +18,10 @@ app.post('/api/mysql', async (req, res) => {
     let srvDatabase = 'cacau_rock';
 
     if (domain !== 'localhost') {
-        srvHost = 'mysql-miguel-64b3.j.aivencloud.com';
-        srvUser = 'avnadmin';
-        srvPassword = 'AVNS_Qq-XgoGI_xr3Vjgvw4h';
-        srvDatabase = 'defaultdb';
+        srvHost = 'sql.freedb.tech';
+        srvUser = 'freedb_freedb_cacau';
+        srvPassword = '#f#5MYXcM79NpHu';
+        srvDatabase = 'freedb_cacau';
     }
 
     const pool = mysql.createPool({
