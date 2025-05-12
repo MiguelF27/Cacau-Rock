@@ -21,9 +21,9 @@ app.post('/api/mysql', async (req, res) => {
 
     if (domain != 'localhost') {
         srvHost = 'sql.freedb.tech';
-        srvUser = 'freedb_freedb_cacau';
-        srvPassword = '#f#5MYXcM79NpHu';
-        srvDatabase = 'freedb_cacau';
+        srvUser = 'freedb_cacau';
+        srvPassword = '$MSf4sc$fw*zE34';
+        srvDatabase = 'freedb_cacaurock';
     }
 
     const pool = mysql.createPool({
